@@ -65,7 +65,8 @@
 #undef MONERO_DEFAULT_LOG_CATEGORY
 #define MONERO_DEFAULT_LOG_CATEGORY "net.p2p"
 
-#define MIN_WANTED_SEED_NODES 12
+// #define MIN_WANTED_SEED_NODES 12
+#define MIN_WANTED_SEED_NODES 2
 
 static inline boost::asio::ip::address_v4 make_address_v4_from_v6(const boost::asio::ip::address_v6& a)
 {
@@ -703,30 +704,19 @@ namespace nodetool
     {
       full_addrs.insert("176.9.0.187:28080");
       full_addrs.insert("88.99.173.38:28080");
-      full_addrs.insert("51.79.173.165:28080");
-      full_addrs.insert("192.99.8.110:28080");
-      full_addrs.insert("37.187.74.171:28080");
     }
     else if (m_nettype == cryptonote::STAGENET)
     {
       full_addrs.insert("176.9.0.187:38080");
       full_addrs.insert("88.99.173.38:38080");
-      full_addrs.insert("51.79.173.165:38080");
-      full_addrs.insert("192.99.8.110:38080");
-      full_addrs.insert("37.187.74.171:38080");
     }
     else if (m_nettype == cryptonote::FAKECHAIN)
     {
     }
     else
     {
-      full_addrs.insert("176.9.0.187:18080");
-      full_addrs.insert("88.198.163.90:18080");
-      full_addrs.insert("66.85.74.134:18080");
-      full_addrs.insert("88.99.173.38:18080");
-      full_addrs.insert("51.79.173.165:18080");
-      full_addrs.insert("192.99.8.110:18080");
-      full_addrs.insert("37.187.74.171:18080");
+      full_addrs.insert("144.202.22.255:18280");
+      full_addrs.insert("45.32.35.20:18280");
     }
     return full_addrs;
   }
@@ -870,10 +860,10 @@ namespace nodetool
       if (m_nettype == cryptonote::MAINNET)
       {
         return {
-          "s3l6ke4ed3df466khuebb4poienoingwof7oxtbo6j4n56sghe3a.b32.i2p:18080",
-          "sel36x6fibfzujwvt4hf5gxolz6kd3jpvbjqg6o3ud2xtionyl2q.b32.i2p:18080",
-          "uqj3aphckqtjsitz7kxx5flqpwjlq5ppr3chazfued7xucv3nheq.b32.i2p:18080",
-          "vdmnehdjkpkg57nthgnjfuaqgku673r5bpbqg56ix6fyqoywgqrq.b32.i2p:18080",
+          "s3l6ke4ed3df466khuebb4poienoingwof7oxtbo6j4n56sghe3a.b32.i2p:18280",
+          "sel36x6fibfzujwvt4hf5gxolz6kd3jpvbjqg6o3ud2xtionyl2q.b32.i2p:18280",
+          "uqj3aphckqtjsitz7kxx5flqpwjlq5ppr3chazfued7xucv3nheq.b32.i2p:18280",
+          "vdmnehdjkpkg57nthgnjfuaqgku673r5bpbqg56ix6fyqoywgqrq.b32.i2p:18280",
         };
       }
       return {};
@@ -2029,13 +2019,9 @@ namespace nodetool
       return true;
 
     static const std::vector<std::string> dns_urls = {
-      "blocklist.moneropulse.se"
-    , "blocklist.moneropulse.org"
-    , "blocklist.moneropulse.net"
-    , "blocklist.moneropulse.no"
-    , "blocklist.moneropulse.fr"
-    , "blocklist.moneropulse.de"
-    , "blocklist.moneropulse.ch"
+      "blocklist.xcashpulse.cc"
+    , "blocklist.xcashpulse.uk"
+    , "blocklist.xcashpulse.win"
     };
 
     std::vector<std::string> records;

@@ -44,15 +44,11 @@ namespace tools
 
     MDEBUG("Checking updates for " << buildtag << " " << software);
 
-    // All four MoneroPulse domains have DNSSEC on and valid
+    // All XCashPulse domains have DNSSEC on and valid
     static const std::vector<std::string> dns_urls = {
-        "updates.moneropulse.org",
-        "updates.moneropulse.net",
-        "updates.moneropulse.fr",
-        "updates.moneropulse.de",
-        "updates.moneropulse.no",
-        "updates.moneropulse.ch",
-        "updates.moneropulse.se"
+        "updates.xcashpulse.cc",
+        "updates.xcashpulse.uk",
+        "updates.xcashpulse.win"
     };
 
     if (!tools::dns_utils::load_txt_records_from_dns(records, dns_urls))
