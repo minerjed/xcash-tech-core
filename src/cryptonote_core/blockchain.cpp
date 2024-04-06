@@ -1398,6 +1398,7 @@ bool Blockchain::prevalidate_miner_transaction(const block& b, uint64_t height, 
 // This function validates the miner transaction reward
 bool Blockchain::validate_miner_transaction(const block& b, size_t cumulative_block_weight, uint64_t fee, uint64_t& base_reward, uint64_t already_generated_coins, bool &partial_block_reward, uint8_t version)
 {
+  auto bheight = m_db->height();
   LOG_PRINT_L3("Blockchain::" << __func__);
   //validate reward
   uint64_t money_in_use = 0;
@@ -1440,8 +1441,12 @@ bool Blockchain::validate_miner_transaction(const block& b, size_t cumulative_bl
   {
     if(base_reward + fee != money_in_use)
     {
-      MDEBUG("coinbase transaction doesn't use full amount of block reward:  spent: " << money_in_use << ",  block reward " << base_reward + fee << "(" << base_reward << "+" << fee << ")");
-      return false;
+      if(bheight != 1) {  
+        MDEBUG("coinbase transaction doesn't use full amount of block reward:  spent: " << money_in_use << ",  block reward " << base_reward + fee << "(" << base_reward << "+" << fee << ")");
+        return false;
+      } else{
+        return true;
+      }
     }
   }
   else
