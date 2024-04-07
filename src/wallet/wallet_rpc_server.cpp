@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2023, The Monero Project
+// Copyright (c) 2018-2024 X-CASH Project, Derived from 2014-2022, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -82,7 +82,7 @@ namespace
   const command_line::arg_descriptor<bool> arg_prompt_for_password = {"prompt-for-password", "Prompts for password when not provided", false};
   const command_line::arg_descriptor<bool> arg_no_initial_sync = {"no-initial-sync", "Skips the initial sync before listening for connections", false};
 
-  constexpr const char default_rpc_username[] = "xcash";
+  constexpr const char default_rpc_username[] = "monero";
 
   boost::optional<tools::password_container> password_prompter(const char *prompt, bool verify)
   {
@@ -1091,8 +1091,24 @@ namespace tools
     try
     {
       uint64_t mixin = m_wallet->adjust_mixin(req.ring_size ? req.ring_size - 1 : 0);
+
+      // check for a valid tx_privacy_settings
+      std::string tx_privacy_settings = req.tx_privacy_settings != "" ? req.tx_privacy_settings : "private";
+      // convert the tx privacy settings to lower case
+      for (int count = 0; tx_privacy_settings[count]; count++)
+      {
+        tx_privacy_settings[count] = tolower(tx_privacy_settings[count]);
+      }
+ 
+      if (tx_privacy_settings != "private" && tx_privacy_settings != "public")
+      {
+        er.code = WALLET_RPC_ERROR_CODE_TX_NOT_POSSIBLE;
+        er.message = "Invalid tx_privacy_settings. private or public are the only valid settings";
+        return false;
+      }
+
       uint32_t priority = m_wallet->adjust_priority(req.priority);
-      std::vector<wallet2::pending_tx> ptx_vector = m_wallet->create_transactions_2(dsts, mixin, req.unlock_time, priority, extra, req.account_index, req.subaddr_indices, req.subtract_fee_from_outputs);
+      std::vector<wallet2::pending_tx> ptx_vector = m_wallet->create_transactions_2(dsts, mixin, req.unlock_time, tx_privacy_settings, priority, extra, req.account_index, req.subaddr_indices, req.subtract_fee_from_outputs);
 
       if (ptx_vector.empty())
       {
@@ -1145,9 +1161,25 @@ namespace tools
     try
     {
       uint64_t mixin = m_wallet->adjust_mixin(req.ring_size ? req.ring_size - 1 : 0);
+
+      // check for a valid tx_privacy_settings
+      std::string tx_privacy_settings = req.tx_privacy_settings != "" ? req.tx_privacy_settings : "private";
+      // convert the tx privacy settings to lower case
+      for (int count = 0; tx_privacy_settings[count]; count++)
+      {
+        tx_privacy_settings[count] = tolower(tx_privacy_settings[count]);
+      }
+ 
+      if (tx_privacy_settings != "private" && tx_privacy_settings != "public")
+      {
+        er.code = WALLET_RPC_ERROR_CODE_TX_NOT_POSSIBLE;
+        er.message = "Invalid tx_privacy_settings. private or public are the only valid settings";
+        return false;
+      }
+
       uint32_t priority = m_wallet->adjust_priority(req.priority);
       LOG_PRINT_L2("on_transfer_split calling create_transactions_2");
-      std::vector<wallet2::pending_tx> ptx_vector = m_wallet->create_transactions_2(dsts, mixin, req.unlock_time, priority, extra, req.account_index, req.subaddr_indices);
+      std::vector<wallet2::pending_tx> ptx_vector = m_wallet->create_transactions_2(dsts, mixin, req.unlock_time, tx_privacy_settings, priority, extra, req.account_index, req.subaddr_indices);
       LOG_PRINT_L2("on_transfer_split called create_transactions_2");
 
       if (ptx_vector.empty())
