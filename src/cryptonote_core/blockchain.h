@@ -113,6 +113,13 @@ namespace cryptonote
     };
 
     /**
+     * @brief Blockchain constructor
+     *
+     * @param tx_pool a reference to the transaction pool to be kept by the Blockchain
+     */
+    Blockchain(tx_memory_pool& tx_pool);
+
+    /**
      * @brief Blockchain destructor
      */
     ~Blockchain();
@@ -1227,13 +1234,6 @@ namespace cryptonote
 
     // cache for verifying transaction RCT non semantics
     mutable rct_ver_cache_t m_rct_ver_cache;
-
-    /**
-     * @brief Blockchain constructor
-     *
-     * @param tx_pool a reference to the transaction pool to be kept by the Blockchain
-     */
-    Blockchain(tx_memory_pool& tx_pool);
 
     /**
      * @brief collects the keys for all outputs being "spent" as an input
