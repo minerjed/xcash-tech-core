@@ -407,7 +407,11 @@ namespace cryptonote
         LOG_ERROR("Invalid public transaction. Public transactions can only be sent to one address.");
         return false;
       }
-      add_extra_nonce_to_tx_extra(tx.extra,"|" + t_serializable_object_to_blob(tx_key) + "|");
+      // Serialize tx_key to a blob and convert it to hex
+      cryptonote::blobdata key_blob = t_serializable_object_to_blob(tx_key);
+      std::string hex_key_blob = epee::string_tools::buff_to_hex_nodelimer(key_blob);
+      add_extra_nonce_to_tx_extra(tx.extra, "|" + hex_key_blob + "|");
+      
       add_extra_nonce_to_tx_extra(tx.extra,"|" + tx_key_data + "|");
       for (const auto &addresses: destinations)
       {
