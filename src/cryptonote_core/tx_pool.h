@@ -99,6 +99,13 @@ namespace cryptonote
   {
   public:
     /**
+     * @brief Constructor
+     *
+     * @param bchs a Blockchain class instance, for getting chain info
+     */
+    tx_memory_pool(Blockchain& bchs);
+
+    /**
      * @copydoc add_tx(transaction&, tx_verification_context&, bool, bool, uint8_t)
      *
      * @param id the transaction's hash
@@ -480,14 +487,6 @@ namespace cryptonote
     bool get_pool_info(time_t start_time, bool include_sensitive, size_t max_tx_count, std::vector<std::pair<crypto::hash, tx_details>>& added_txs, std::vector<crypto::hash>& remaining_added_txids, std::vector<crypto::hash>& removed_txs, bool& incremental) const;
 
   private:
-
-    /**
-     * @brief Constructor
-     *
-     * @param bchs a Blockchain class instance, for getting chain info
-     */
-    tx_memory_pool(Blockchain& bchs);
-
     /**
      * @brief insert key images into m_spent_key_images
      *
