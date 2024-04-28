@@ -158,6 +158,7 @@ int main(int argc, char const * argv[])
       command_line::add_arg(core_settings, daemon_args::arg_zmq_rpc_bind_port);
       command_line::add_arg(core_settings, daemon_args::arg_zmq_pub);
       command_line::add_arg(core_settings, daemon_args::arg_zmq_rpc_disabled);
+      command_line::add_arg(core_settings, daemon_args::arg_public_only);
       command_line::add_arg(core_settings, daemonizer::arg_non_interactive);
 
       daemonizer::init_options(hidden_options, visible_options);
@@ -246,6 +247,8 @@ int main(int argc, char const * argv[])
       std::cerr << "Can't specify more than one of --tesnet and --stagenet and --regtest" << ENDL;
       return 1;
     }
+
+    const bool publicOnly = command_line::get_arg(vm, cryptonote::arg_testnet_on);
 
     // data_dir
     //   default: e.g. ~/.bitmonero/ or ~/.bitmonero/testnet

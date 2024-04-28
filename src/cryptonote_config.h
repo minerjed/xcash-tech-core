@@ -326,6 +326,7 @@ namespace cryptonote
     uint64_t const CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX;
     uint64_t const CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX;
     uint64_t const CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX;
+    uint64_t const CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX_PUB_ONLY;
     uint16_t const P2P_DEFAULT_PORT;
     uint16_t const RPC_DEFAULT_PORT;
     uint16_t const ZMQ_RPC_DEFAULT_PORT;
@@ -339,6 +340,7 @@ namespace cryptonote
         ::config::CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX,
         ::config::CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX,
         ::config::CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX,
+        ::config::CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX_PUB_ONLY,
         ::config::P2P_DEFAULT_PORT,
         ::config::RPC_DEFAULT_PORT,
         ::config::ZMQ_RPC_DEFAULT_PORT,
@@ -349,6 +351,7 @@ namespace cryptonote
         ::config::testnet::CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX,
         ::config::testnet::CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX,
         ::config::testnet::CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX,
+        ::config::testnet::CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX_PUB_ONLY,
         ::config::testnet::P2P_DEFAULT_PORT,
         ::config::testnet::RPC_DEFAULT_PORT,
         ::config::testnet::ZMQ_RPC_DEFAULT_PORT,
@@ -359,6 +362,7 @@ namespace cryptonote
         ::config::stagenet::CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX,
         ::config::stagenet::CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX,
         ::config::stagenet::CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX,
+        ::config::stagenet::CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX_PUB_ONLY,
         ::config::stagenet::P2P_DEFAULT_PORT,
         ::config::stagenet::RPC_DEFAULT_PORT,
         ::config::stagenet::ZMQ_RPC_DEFAULT_PORT,
