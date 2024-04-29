@@ -31,6 +31,7 @@
 #include "include_base_utils.h"
 using namespace epee;
 
+#include <boost/program_options.hpp>
 #include "cryptonote_basic_impl.h"
 #include "string_tools.h"
 #include "serialization/binary_utils.h"
@@ -41,7 +42,7 @@ using namespace epee;
 #include "crypto/hash.h"
 #include "int-util.h"
 #include "common/dns_utils.h"
-#include "common/command_line.h"
+#include "common/command_line_args.h"
 
 #undef MONERO_DEFAULT_LOG_CATEGORY
 #define MONERO_DEFAULT_LOG_CATEGORY "cn"
