@@ -137,12 +137,6 @@ namespace daemon_args
   , "Disable ZMQ RPC server"
   };
 
-  const command_line::arg_descriptor<bool, false> arg_public_only  = {
-    "public-only"
-  , "Only create public addreses and accept public transactions"
-  , false
-  };
-
 }  // namespace daemon_args
 
 #endif // DAEMON_COMMAND_LINE_ARGS_H
