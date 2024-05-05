@@ -156,7 +156,6 @@ namespace cryptonote {
   {
     uint64_t address_prefix;
     if (subaddress) {
-      po::variables_map vm;
       if (command_line::get_arg(vm, command_line::arg_public_only)) {
         address_prefix = get_config(nettype).CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX_PUB_ONLY;
       } else {
@@ -202,7 +201,6 @@ namespace cryptonote {
     uint64_t address_prefix = get_config(nettype).CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX;
     uint64_t integrated_address_prefix = get_config(nettype).CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX;
     uint64_t subaddress_prefix;
-    po::variables_map vm;
     if (command_line::get_arg(vm, command_line::arg_public_only)) {
       subaddress_prefix = get_config(nettype).CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX_PUB_ONLY;
     } else {
